@@ -1,12 +1,12 @@
 
 const Footer = () => {
     return (
-        <footer className="footer grid-rows-2 p-10 bg-gradient-to-b from-teal-700 to-teal-100 text-white">
+        <footer className="footer grid-rows-2 p-10 bg-gradient-to-b from-teal-700 to-teal-200 text-white">
         <nav>
           <header className="footer-title">Services</header> 
           <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
+          <a className="link link-hover">Learning</a>
+          <a className="link link-hover">Class</a>
           <a className="link link-hover">Advertisement</a>
         </nav> 
         <nav>
@@ -34,7 +34,7 @@ const Footer = () => {
           <a className="link link-hover">Features</a>
           <a className="link link-hover">Enterprise</a>
           <a className="link link-hover">Security</a>
-          <a className="link link-hover">Pricing</a>
+          <a className="link link-hover">Experience</a>
         </nav> 
         <nav>
           <header className="footer-title">Apps</header> 

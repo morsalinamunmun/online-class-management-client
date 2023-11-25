@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Teach from "../pages/Teach/Teach";
 import PrivateRoute from "./PrivateRoute";
+import AddClass from "../pages/AddClass/AddClass";
 
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
             {
                 path: '/teach',
                 element: <PrivateRoute><Teach></Teach></PrivateRoute>
+            },
+            {
+                path: '/addClass',
+                element: <AddClass></AddClass>
             },
             {
                 path: '/login',
