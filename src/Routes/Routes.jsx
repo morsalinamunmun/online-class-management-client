@@ -5,6 +5,9 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import Teach from "../pages/Teach/Teach";
+import PrivateRoute from "./PrivateRoute";
+
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +17,10 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/teach',
+                element: <PrivateRoute><Teach></Teach></PrivateRoute>
             },
             {
                 path: '/login',

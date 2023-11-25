@@ -13,7 +13,7 @@ const Navbar = () => {
     const menus = <>
         <li><NavLink to='/' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>Home</NavLink></li>
         <li><NavLink to='/class' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>All Classes</NavLink></li>
-        <li><NavLink to='/online' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>Teach on Online Wave</NavLink></li>
+        <li><NavLink to='/teach' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>Teach on Online Wave</NavLink></li>
     </>
     return (
         <div className="navbar fixed z-10 text-white bg-teal-500 bg-opacity-30">
@@ -41,19 +41,19 @@ const Navbar = () => {
                          <div className="dropdown dropdown-end">
                             <label   tabIndex ={0} className="btn btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    <img src={user.photoURL} alt="" />
+                                    <img src={user?.photoURL} alt="" />
                                 </div>
                             </label>
-                            <ul tabIndex={0} className="p-2 shadow menu menu-sm dropdown-content z-[1] bg-base-100 rounded-box w-36">
-                                <li className="font-semibold text-center mb-2">{user.displayName}</li>
-                                <li><a onClick={handleLogOut} className="py-2 px-3 text-white flex mx-auto text-center font-semibold rounded-full bg-orange-500 cursor-pointer">Sign Out</a></li>
+                            <ul tabIndex={0} className="p-2 shadow menu menu-sm dropdown-content z-[1] bg-base-100 rounded-box w-36 text-teal-500">
+                                <li className="font-semibold text-center mb-2">{user?.displayName}</li>
+                                <Link>Dashboard</Link>
+                                <div className="divider"></div>
+                                <li><a onClick={handleLogOut} className="font-semibold btn border-0 bg-teal-500 text-white">Sign Out</a></li>
                             </ul>
                         </div>                       
                     </> : 
                     <Link to='/login' className= "font-semibold btn border-0 bg-teal-500 text-white">Log In</Link>
                 }
-
-                {/* <Link to="/login" className="btn border-0 bg-teal-500 text-white">Login</Link> */}
             </div>
         </div>
     );

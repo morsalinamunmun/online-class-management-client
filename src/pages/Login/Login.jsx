@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
-//import { AuthContext } from '../../providers/AuthProvider';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
-//import { AuthContext } from '../../providers/AuthProvider';
+import { FaGoogle } from 'react-icons/fa';
+import login from '../../assets/b-class.jpg'
+
 
 const Login = () => {
     
     const[disabled, setDisabled] = useState(true);
-    const {signIn} = useContext(AuthContext);
+    const {signIn, googleSignIn} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -52,30 +53,37 @@ const Login = () => {
             setDisabled(true)
         }
     }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result.user)
+            })
+            .catch(error => console.error(error))
+    }
     return (
         <>
             <Helmet>
                 <title>Bistro Boss | Login</title>
             </Helmet>
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen py-20">
             <div className="hero-content flex-col md:flex-row-reverse">
-                <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                <div className="text-center w-[30%] lg:text-left">
+                    <img className='w-full' src={login} alt="" />
                 </div>
-                <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="card shrink-0 w-full max-w-sm ">
                     <form className="card-body" onSubmit={handleLogin}>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" name="email" placeholder="email" className="input input-bordered" required />
+                            <input type="email" name="email" placeholder="email" className="input border-teal-500 border-2" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                            <input type="password" name="password" placeholder="password" className="input border-teal-500 border-2" required />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -84,13 +92,14 @@ const Login = () => {
                             <label className="label">
                             <LoadCanvasTemplate />
                             </label>
-                            <input onBlur={handleValidation} type="text"  name="captcha" placeholder="Captcha" className="input input-bordered" required />
+                            <input onBlur={handleValidation} type="text"  name="captcha" placeholder="Captcha" className="input border-teal-500 border-2" required />
                         </div>
                         <div className="form-control mt-6">
-                            <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
+                            <input disabled={disabled} className="bg-teal-500 rounded-lg p-3 text-white" type="submit" value="Login" />
                         </div>
+                        <p><button onClick={handleGoogleSignIn} className="ml-1 flex items-center text-blue-500 underline"><FaGoogle></FaGoogle>Login With Google</button></p>
                     </form>
-                    <p>Don not have an account? <Link to="/signup">Sign Up</Link></p>
+                    <p>Don not have an account? <Link to="/signup" className='text-teal-500'>Sign Up</Link></p>
                 </div>
             </div>
         </div>
