@@ -1,6 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../assets/classes-icon-17.png'
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 const Navbar = () => {
+    const {user, logOut} = useContext(AuthContext);
+
+    const handleLogOut = () =>{
+        logOut()
+        .then(()=>{})
+        .catch(error=>console.error(error))
+    }
     const menus = <>
         <li><NavLink to='/' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>Home</NavLink></li>
         <li><NavLink to='/class' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>All Classes</NavLink></li>
@@ -26,7 +35,25 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn border-0 bg-teal-500 text-white">Login</a>
+            {
+                    user ? 
+                    <>
+                         <div className="dropdown dropdown-end">
+                            <label   tabIndex ={0} className="btn btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src={user.photoURL} alt="" />
+                                </div>
+                            </label>
+                            <ul tabIndex={0} className="p-2 shadow menu menu-sm dropdown-content z-[1] bg-base-100 rounded-box w-36">
+                                <li className="font-semibold text-center mb-2">{user.displayName}</li>
+                                <li><a onClick={handleLogOut} className="py-2 px-3 text-white flex mx-auto text-center font-semibold rounded-full bg-orange-500 cursor-pointer">Sign Out</a></li>
+                            </ul>
+                        </div>                       
+                    </> : 
+                    <Link to='/login' className= "font-semibold btn border-0 bg-teal-500 text-white">Log In</Link>
+                }
+
+                {/* <Link to="/login" className="btn border-0 bg-teal-500 text-white">Login</Link> */}
             </div>
         </div>
     );
