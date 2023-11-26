@@ -46,7 +46,7 @@ const Navbar = () => {
                             </label>
                             <ul tabIndex={0} className="p-2 shadow menu menu-sm dropdown-content z-[1] bg-base-100 rounded-box w-36 text-teal-500">
                                 <li className="font-semibold text-center mb-2">{user?.displayName}</li>
-                                <Link>Dashboard</Link>
+                                <Link to='/dashboard'>Dashboard</Link>
                                 <div className="divider"></div>
                                 <li><a onClick={handleLogOut} className="font-semibold btn border-0 bg-teal-500 text-white">Sign Out</a></li>
                             </ul>

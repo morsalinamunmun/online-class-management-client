@@ -1,5 +1,8 @@
 import img from '../../../assets/online-classes-illustration-2.jpg'
+import useAuth from '../../../hooks/useAuth';
 const UserCount = () => {
+    const {user} = useAuth();
+    console.log(user)
     return (
         <div className="hero max-w-4xl mx-auto">
             <div className="hero-content flex-col lg:flex-row-reverse">
