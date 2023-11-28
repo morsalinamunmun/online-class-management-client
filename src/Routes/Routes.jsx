@@ -10,6 +10,9 @@ import PrivateRoute from "./PrivateRoute";
 import AddClass from "../pages/AddClass/AddClass";
 import Dashboard from "../Layout/Dashboard";
 
+import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import TeacherRequest from "../pages/Dashboard/TeacherRequest/TeacherRequest";
+
 
 export const router = createBrowserRouter([
     {
@@ -39,10 +42,17 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: '/dashboard',
+        path: 'dashboard',
         element: <Dashboard></Dashboard>,
         children:[
-            {}
+            {
+                path: 'teacherRequest',
+                element: <TeacherRequest></TeacherRequest>
+            },
+            {
+                path: 'profile',
+                element: <MyProfile></MyProfile>
+            }
         ]
     }
 ]);
