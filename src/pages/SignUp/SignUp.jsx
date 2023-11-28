@@ -5,10 +5,14 @@ import { Link,useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { useContext } from 'react';
+//import { AuthContext } from '../../providers/AuthProvider';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import { AuthContext } from '../../providers/AuthProvider';
 
 
 const SignUp = () => {
+    const axiosPublic = useAxiosPublic();
     const {
         register,
         handleSubmit,
@@ -26,16 +30,25 @@ const SignUp = () => {
                 console.log(loggedUser)
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('user profile')
-                        reset();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'User created successfully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate(location?.state? location.state: '/')
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                        .then(res=>{
+                            if(res.data.insertedId){
+                                reset();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'User created successfully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                navigate(location?.state? location.state: '/')
+                            }
+                        })
+                       
                     })
                     .catch(error => console.log(error))
             })
@@ -43,7 +56,7 @@ const SignUp = () => {
     return (
         <>
             <Helmet>
-                <title>Bistro Boss | Sign Up</title>
+                <title>Online Wave | Sign Up</title>
             </Helmet>
             <div className="hero min-h-screen py-20 max-w-5xl mx-auto">
                 <div className="hero-content flex-col lg:flex-row-reverse">
@@ -99,6 +112,7 @@ const SignUp = () => {
                                 <button className="btn bg-teal-500 text-white border-0">Sign Up</button>
                             </div>
                         </form>
+                        <SocialLogin></SocialLogin>
                         <p>Already have an account? <Link to="/login" className='text-teal-500'>Log In</Link></p>
                     </div>
                 </div>

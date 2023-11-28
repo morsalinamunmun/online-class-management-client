@@ -5,14 +5,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
-import { FaGoogle } from 'react-icons/fa';
 import login from '../../assets/b-class.jpg'
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 
 const Login = () => {
     
     const[disabled, setDisabled] = useState(true);
-    const {signIn, googleSignIn} = useContext(AuthContext);
+    const {signIn} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -54,17 +54,11 @@ const Login = () => {
         }
     }
 
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-            .then(result => {
-                console.log(result.user)
-            })
-            .catch(error => console.error(error))
-    }
+    
     return (
         <>
             <Helmet>
-                <title>Bistro Boss | Login</title>
+                <title>Online Wave | Login</title>
             </Helmet>
         <div className="hero min-h-screen py-20">
             <div className="hero-content flex-col md:flex-row-reverse">
@@ -97,8 +91,9 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <input disabled={disabled} className="bg-teal-500 rounded-lg p-3 text-white" type="submit" value="Login" />
                         </div>
-                        <p><button onClick={handleGoogleSignIn} className="ml-1 flex items-center text-blue-500 underline"><FaGoogle></FaGoogle>Login With Google</button></p>
+                        
                     </form>
+                    <SocialLogin></SocialLogin>
                     <p>Don not have an account? <Link to="/signup" className='text-teal-500'>Sign Up</Link></p>
                 </div>
             </div>
