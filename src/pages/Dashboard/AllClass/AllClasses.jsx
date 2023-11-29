@@ -1,3 +1,4 @@
+
 //import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -8,7 +9,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
-import { FaUserCog } from "react-icons/fa";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function UserTable({ users, refetch }) {
+export default function AllClasses({refetch}) {
     const axiosSecure = useAxiosSecure();
     const handleMakeAdmin = user =>{
         axiosSecure.patch(`/users/admin/${user._id}`)
@@ -100,10 +100,10 @@ export default function UserTable({ users, refetch }) {
                             </StyledTableCell>
                             <StyledTableCell align="right">{user.email}</StyledTableCell>
                             <StyledTableCell align="right">{
-                                user.role === "admin"? "Admin" : <Button onClick={()=> handleMakeAdmin(user)} variant="contained"><FaUserCog /></Button>
+                                user.role === "admin"? "Admin" : <Button onClick={()=> handleMakeAdmin(user)} variant="contained">Approved</Button>
                             }</StyledTableCell>
                             <StyledTableCell align="right"><Button onClick={()=> handleDeleteUser(user)} variant="outlined" color="error">
-                                Delete
+                                Reject
                             </Button></StyledTableCell>
                         </StyledTableRow>
                     ))}

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+//import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Teach = () => {
     const { user } = useContext(AuthContext);
-    const axiosSecure = useAxiosSecure();
+    //const axiosSecure = useAxiosSecure();
 
     const handleAddApplication = e => {
         e.preventDefault();
@@ -58,7 +58,7 @@ const Teach = () => {
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Types of Product</span>
+                                <span className="label-text">Experience</span>
                             </label>
                             <label className="input-group">
                                 <select className="select border-teal-500 border-2 select-bordered w-full " name="experience">
@@ -77,7 +77,7 @@ const Teach = () => {
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Types of Product</span>
+                                <span className="label-text">Teaching Category</span>
                             </label>
                             <label className="input-group">
                                 <select className="select border-teal-500 border-2 select-bordered w-full " name="category">

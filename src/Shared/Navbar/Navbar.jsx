@@ -13,7 +13,7 @@ const Navbar = () => {
     const menus = <>
         <li><NavLink to='/' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>Home</NavLink></li>
         {
-            user? <li><NavLink to='/dashboard/teacherRequest' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>Dashboard</NavLink></li>: ' '
+            user? <li><NavLink to='/dashboard' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>Dashboard</NavLink></li>: ' '
         }
         <li><NavLink to='/class' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>All Classes</NavLink></li>
         <li><NavLink to='/teach' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "text-teal-300" : ""}>Teach on Online Wave</NavLink></li>

@@ -13,6 +13,8 @@ import Dashboard from "../Layout/Dashboard";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import TeacherRequest from "../pages/Dashboard/TeacherRequest/TeacherRequest";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
+import AllClasses from "../pages/Dashboard/AllClass/AllClasses";
 
 
 export const router = createBrowserRouter([
@@ -54,12 +56,16 @@ export const router = createBrowserRouter([
             //admin routes
             {
                 path: 'users',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: 'teacherRequest',
-                element: <TeacherRequest></TeacherRequest>
+                element: <AdminRoute><TeacherRequest></TeacherRequest></AdminRoute>
             },
+            {
+                path:'allClasses',
+                element: <AllClasses></AllClasses>
+            }
 
 
         ]

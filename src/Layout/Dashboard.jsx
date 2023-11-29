@@ -4,7 +4,7 @@ import { Outlet, NavLink } from "react-router-dom"
 //import { SiCoursera } from "react-icons/si";
 //import { ImProfile } from "react-icons/im";
 import img from '../assets/classes-icon-17.png'
-import { MdEmail } from "react-icons/md";
+import { MdEmail, MdClass } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
 const Dashboard = () => {
@@ -23,9 +23,10 @@ const Dashboard = () => {
                 <ul className="menu">
                     {
                         isAdmin ? <>
-                            <li><NavLink to='/'><FaHome></FaHome>Admin Home</NavLink></li>
+                            <li><NavLink to='/'><FaHome></FaHome>Profile</NavLink></li>
                             <li><NavLink to='/dashboard/teacherRequest'>Teacher Request</NavLink></li>
                             <li><NavLink to='/dashboard/users'><FaUserFriends /> All User</NavLink></li>
+                            <li><NavLink to='/dashboard/allClasses'><MdClass />All Classes</NavLink></li>
                         </>
                             : <>
 

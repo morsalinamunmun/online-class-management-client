@@ -8,10 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useEffect, useState } from 'react';
+//import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 //import { AuthContext } from '../../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 // import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -35,15 +37,30 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function TeacherRequest() {
-    const [request, setRequest] = useState([]);
-    //const {user} = useContext(AuthContext);
-    //const axiosSecure = useAxiosSecure();
-    useEffect(()=>{
-        fetch('http://localhost:5000/application')
-        .then(res=> res.json())
-        .then(data=> setRequest(data))
-    }, [])
 
+    const axiosSecure = useAxiosSecure();
+    const {data: teacherRequest = [], refetch} = useQuery({
+      queryKey: ['teacherRequest'],
+      queryFn: async () =>{
+          const res = await axiosSecure.get('/teacherRequest');
+          return res.data;
+      }
+  })
+    const handleMakeTeacher = teacher =>{
+        axiosSecure.patch(`/teacherRequest/teacher/${teacher._id}`)
+        .then(res=>{
+            if(res.data.modifiedCount > 0){
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${teacher.name} is an Teacher Now`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+        })
+    }
     const handleReject = (_id) =>{
       Swal.fire({
           title: 'Are you sure?',
@@ -55,7 +72,7 @@ export default function TeacherRequest() {
           confirmButtonText: 'Yes, cancel it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch(`http://localhost:5000/application/${_id}`, {
+            fetch(`http://localhost:5000/teacherRequest/${_id}`, {
               method: "DELETE"
             })
             .then(res=> res.json())
@@ -88,16 +105,18 @@ export default function TeacherRequest() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {request.map((row) => (
-            <StyledTableRow key={row._id}>
+          {teacherRequest.map((teacher) => (
+            <StyledTableRow key={teacher._id}>
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {teacher.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.experience}</StyledTableCell>
-              <StyledTableCell align="right">{row.category}</StyledTableCell>
-              <StyledTableCell align="right">{row.title}</StyledTableCell>
-              <StyledTableCell align="right"> <Button variant="outlined">Approved</Button></StyledTableCell>
-              <StyledTableCell align="right"> <Button onClick={()=>handleReject(row._id)} variant="outlined">Reject</Button></StyledTableCell>
+              <StyledTableCell align="right">{teacher.experience}</StyledTableCell>
+              <StyledTableCell align="right">{teacher.category}</StyledTableCell>
+              <StyledTableCell align="right">{teacher.title}</StyledTableCell>
+              <StyledTableCell align="right">{
+                teacher.role === "teacher"? "Accepted" :<Button variant="outlined" onClick={()=>handleMakeTeacher(teacher)}>Approved</Button>
+              }</StyledTableCell>
+              <StyledTableCell align="right"> <Button onClick={()=>handleReject(teacher._id)} variant="outlined">Reject</Button></StyledTableCell>
              
             </StyledTableRow>
           ))}
