@@ -8,9 +8,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
-import { AuthContext } from '../../../providers/AuthProvider';
+//import { AuthContext } from '../../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 // import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
@@ -36,7 +36,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function TeacherRequest() {
     const [request, setRequest] = useState([]);
-    const {user} = useContext(AuthContext);
+    //const {user} = useContext(AuthContext);
     //const axiosSecure = useAxiosSecure();
     useEffect(()=>{
         fetch('http://localhost:5000/application')

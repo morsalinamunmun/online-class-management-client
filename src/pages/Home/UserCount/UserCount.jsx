@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import img from '../../../assets/online-classes-illustration-2.jpg'
-import useAuth from '../../../hooks/useAuth';
+import { AuthContext } from '../../../providers/AuthProvider';
+
 const UserCount = () => {
-    const {user} = useAuth();
+    const {user} = useContext(AuthContext);
     console.log(user)
     return (
         <div className="hero max-w-4xl mx-auto">
