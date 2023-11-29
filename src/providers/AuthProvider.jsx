@@ -40,7 +40,7 @@ const AuthProvider = ({children}) => {
     }
 
     useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth, currentUser=>{
+        const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser);
             if(currentUser){
                 //
@@ -49,7 +49,7 @@ const AuthProvider = ({children}) => {
                 .then(res=>{
                     if(res.data.token){
                         console.log('token present')
-                        localStorage.setItem('access token', res.data.token);
+                        localStorage.setItem('access-token', res.data.token);
                     }
                 });
             }else{
