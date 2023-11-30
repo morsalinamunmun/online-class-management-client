@@ -1,29 +1,27 @@
 
 import Swal from 'sweetalert2'
+import useAuth from '../../../hooks/useAuth';
 const AddClass = () => {
+    const {user} = useAuth();
     const handleAddFood = e => {
         e.preventDefault();
         const form = e.target;
-        const foodName = form.foodName.value;
-        const status = form.status.value;
+        const title = form.title.value;
         const name = form.name.value;
-        const D_email = form.D_email.value;
-        const DImage_url = form.DImage_url.value;
-        const location = form.location.value;
-        const quantity = form.quantity.value;
-        const date = form.date.value;
-        const notes = form.notes.value;
+        const email = form.email.value;
+        const price = form.price.value;
+        const description = form.description.value;
         const image_url = form.image_url.value;
 
-        const foodInfo = { foodName, status, location, quantity, date, notes, image_url, name, D_email, DImage_url }
+        const classInfo = { title, price, description, image_url, name, email }
 
         //send form data to server
-        fetch('https://food-donation-server-five.vercel.app/food ', {
+        fetch('http://localhost:5000/classes', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(foodInfo)
+            body: JSON.stringify(classInfo)
         })
             .then(res => res.json())
             .then(data => {
@@ -53,13 +51,13 @@ const AddClass = () => {
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input type="text" name="name" placeholder="Your Name" className="rounded-lg border-2 border-teal-500 input input-bordered w-full " required />
+                        <input type="text" name="name" defaultValue={user.displayName} placeholder="Your Name" className="rounded-lg border-2 border-teal-500 input input-bordered w-full " required />
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" name="email" placeholder="Email" className="rounded-lg border-2 border-teal-500 input input-bordered w-full" required />
+                        <input type="email" name="email" defaultValue={user.email} readOnly placeholder="Email" className="rounded-lg border-2 border-teal-500 input input-bordered w-full" required />
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
