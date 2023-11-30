@@ -20,12 +20,14 @@ import MyClass from "../pages/Dashboard/MyClass/MyClass";
 import AddAcceptClass from "../pages/AddAcceptClass/AddAcceptClass";
 import ClassDetails from "../pages/AddAcceptClass/ClassDetails";
 import Payment from "../pages/Payment/Payment";
+import ErrorPage from "../Shared/ErrorPage/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -60,6 +62,7 @@ export const router = createBrowserRouter([
     {
         path: 'dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        errorElement: <ErrorPage></ErrorPage>,
         children:[
             {
                 path: 'profile',
