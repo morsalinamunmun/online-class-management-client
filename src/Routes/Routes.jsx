@@ -18,6 +18,7 @@ import AllClasses from "../pages/Dashboard/AllClass/AllClasses";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClass from "../pages/Dashboard/MyClass/MyClass";
 import AddAcceptClass from "../pages/AddAcceptClass/AddAcceptClass";
+import ClassDetails from "../pages/AddAcceptClass/ClassDetails";
 
 
 export const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             {
                 path: '/class',
                 element: <AddAcceptClass></AddAcceptClass>
+            },
+            {
+                path:'/details/:id',
+                element: <PrivateRoute><ClassDetails></ClassDetails></PrivateRoute>
             }
         ]
     },

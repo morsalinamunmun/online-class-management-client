@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 export default function AddAcceptClass() {
@@ -31,7 +32,7 @@ useEffect(()=>{
 
 const classesItem =classes.filter(acpClass=> acpClass.role == role)
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-20'>
         {
             classesItem.map(acpClass=>
 
@@ -60,7 +61,8 @@ const classesItem =classes.filter(acpClass=> acpClass.role == role)
             </CardContent>
             <CardActions>
               <Button size="small">Total Enrollment:</Button>
-              <Button variant='outlined' size="small">Enroll</Button>
+              <Link to={`/details/${acpClass._id}`}><Button  variant='outlined' size="small">Enroll</Button></Link>
+              
             </CardActions>
           </Card>
             )
