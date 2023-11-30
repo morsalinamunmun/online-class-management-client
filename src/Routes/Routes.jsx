@@ -17,6 +17,7 @@ import AdminRoute from "./AdminRoute";
 import AllClasses from "../pages/Dashboard/AllClass/AllClasses";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClass from "../pages/Dashboard/MyClass/MyClass";
+import AddAcceptClass from "../pages/AddAcceptClass/AddAcceptClass";
 
 
 export const router = createBrowserRouter([
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/class',
+                element: <AddAcceptClass></AddAcceptClass>
             }
         ]
     },
