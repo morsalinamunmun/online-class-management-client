@@ -6,7 +6,7 @@ import img from '../../../assets/online-classes-illustration-2.jpg'
 const UserCount = () => {
     // const [users, setUsers] = useState([]);
     // useEffect(()=>{
-    //     axios.get('http://localhost:5000/users')
+    //     axios.get('https://y-gold-beta.vercel.app/users')
     //     .then(res=> setUsers(res.data))
     // }, [])
     return (

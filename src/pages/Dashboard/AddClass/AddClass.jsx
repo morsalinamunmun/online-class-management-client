@@ -16,7 +16,7 @@ const AddClass = () => {
         const classInfo = { title, price, description, image_url, name, email }
 
         //send form data to server
-        fetch('http://localhost:5000/classes', {
+        fetch('https://y-gold-beta.vercel.app/classes', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"

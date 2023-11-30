@@ -30,7 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-const AllUsers = () => {
+const MyProfile = () => {
     const axiosSecure = useAxiosSecure();
     const {data: users = []} = useQuery({
         queryKey: ['users'],
@@ -76,7 +76,7 @@ const AllUsers = () => {
     );
 };
 
-export default AllUsers;
+export default MyProfile;
 
 /* 
            

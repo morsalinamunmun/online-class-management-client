@@ -19,7 +19,7 @@ const Teach = () => {
         const applicationInfo = { name, title, category, experience, email, userImg}
 
         //send form data to server
-        fetch('http://localhost:5000/teacherRequest', {
+        fetch('https://y-gold-beta.vercel.app/teacherRequest', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"

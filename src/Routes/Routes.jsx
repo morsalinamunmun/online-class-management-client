@@ -21,6 +21,7 @@ import AddAcceptClass from "../pages/AddAcceptClass/AddAcceptClass";
 import ClassDetails from "../pages/AddAcceptClass/ClassDetails";
 import Payment from "../pages/Payment/Payment";
 import ErrorPage from "../Shared/ErrorPage/ErrorPage";
+import TProfile from "../pages/Dashboard/TProfile/TProfile";
 
 
 export const router = createBrowserRouter([
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
             {
                 path: 'myClass',
                 element: <MyClass></MyClass>
+            },
+            {
+                path: 'tProfile',
+                element: <TProfile></TProfile>
             }
 
 

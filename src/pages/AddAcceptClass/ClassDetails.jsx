@@ -7,7 +7,7 @@ const ClassDetails = () => {
     const [classes, setClasses] = useState([]);
 console.log(classes)
 useEffect(()=>{
-    axios.get('http://localhost:5000/classes')
+    axios.get('https://y-gold-beta.vercel.app/classes')
     .then(res=> {   
         setClasses(res.data)})
 }, [])

@@ -72,7 +72,7 @@ export default function TeacherRequest() {
           confirmButtonText: 'Yes, cancel it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch(`http://localhost:5000/teacherRequest/${_id}`, {
+            fetch(`https://y-gold-beta.vercel.app/teacherRequest/${_id}`, {
               method: "DELETE"
             })
             .then(res=> res.json())

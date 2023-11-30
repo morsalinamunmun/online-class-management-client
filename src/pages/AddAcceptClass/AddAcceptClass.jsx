@@ -1,13 +1,4 @@
 
-// const AddAcceptClass = () => {
-//     return (
-//         <div>
-            
-//         </div>
-//     );
-// };
-
-// export default AddAcceptClass;
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -25,7 +16,7 @@ export default function AddAcceptClass() {
 const [classes, setClasses] = useState([]);
 console.log(classes)
 useEffect(()=>{
-    axios.get('http://localhost:5000/classes')
+    axios.get('https://y-gold-beta.vercel.app/classes')
     .then(res=> {   
         setClasses(res.data)})
 }, [])
