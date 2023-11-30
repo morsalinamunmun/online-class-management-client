@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -33,24 +34,32 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function AllClasses({refetch}) {
+export default function AllClasses() {
     const axiosSecure = useAxiosSecure();
-    const handleMakeAdmin = user =>{
-        axiosSecure.patch(`/users/admin/${user._id}`)
-        .then(res=>{
-            if(res.data.modifiedCount > 0){
-                refetch();
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: `${user.name} is an Admin Now`,
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-            }
-        })
-    }
-    const handleDeleteUser = user => {
+    const {data: classes = [], refetch} = useQuery({
+      queryKey: ['classes'],
+      queryFn: async () =>{
+          const res = await axiosSecure.get('/classes');
+          return res.data;
+      }
+  })
+
+  const handleApproved = item =>{
+    axiosSecure.patch(`/classes/item/${item._id}`)
+    .then(res=>{
+        if(res.data.modifiedCount > 0){
+            refetch();
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: `${item.name} is an add Now`,
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+    })
+}
+    const handleDeleteItem = _id => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -62,7 +71,7 @@ export default function AllClasses({refetch}) {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axiosSecure.delete(`/users/${user._id}`)
+                axiosSecure.delete(`/classes/${_id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch();
@@ -82,27 +91,30 @@ export default function AllClasses({refetch}) {
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Image</StyledTableCell>
-                        <StyledTableCell>Name</StyledTableCell>
+                        <StyledTableCell>Title</StyledTableCell>
                         <StyledTableCell align="right">Email</StyledTableCell>
-                        <StyledTableCell align="right">Roll</StyledTableCell>
+                        <StyledTableCell align="right">Price</StyledTableCell>
+                        <StyledTableCell align="right">Action</StyledTableCell>
                         <StyledTableCell align="right">Action</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {users.map((user) => (
-                        <StyledTableRow key={user.name}>
+                    {classes.map((item) => (
+                        <StyledTableRow key={item._id}>
                             {/* component="th" scope="row" */}
                             <StyledTableCell >
-                                <img src={user.userImg} alt="" />
+                                <img className='w-16' src={item.image_url} alt="" />
                             </StyledTableCell>
                             <StyledTableCell >
-                                {user.name}
+                                {item.title}
                             </StyledTableCell>
-                            <StyledTableCell align="right">{user.email}</StyledTableCell>
-                            <StyledTableCell align="right">{
-                                user.role === "admin"? "Admin" : <Button onClick={()=> handleMakeAdmin(user)} variant="contained">Approved</Button>
-                            }</StyledTableCell>
-                            <StyledTableCell align="right"><Button onClick={()=> handleDeleteUser(user)} variant="outlined" color="error">
+                            <StyledTableCell align="right">{item.email}</StyledTableCell>
+                            <StyledTableCell align="right">{item.price}</StyledTableCell>
+                            <StyledTableCell align="right">{item.description}</StyledTableCell>
+                            <StyledTableCell align="right"> {item.role === "accepted"? "Accepted" :<Button onClick={
+                                ()=> handleApproved(item)
+                            } variant="contained">Pending</Button>}</StyledTableCell>
+                            <StyledTableCell align="right"><Button onClick={()=> handleDeleteItem(item)} variant="outlined" color="error">
                                 Reject
                             </Button></StyledTableCell>
                         </StyledTableRow>
