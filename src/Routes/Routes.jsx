@@ -19,6 +19,7 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClass from "../pages/Dashboard/MyClass/MyClass";
 import AddAcceptClass from "../pages/AddAcceptClass/AddAcceptClass";
 import ClassDetails from "../pages/AddAcceptClass/ClassDetails";
+import Payment from "../pages/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
             {
                 path:'/details/:id',
                 element: <PrivateRoute><ClassDetails></ClassDetails></PrivateRoute>
+            },
+            {
+                path: '/payment',
+                element: <Payment></Payment>
             }
         ]
     },

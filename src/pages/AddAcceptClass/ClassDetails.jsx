@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const ClassDetails = () => {
     const role = 'accepted';
@@ -28,7 +28,7 @@ const classesItem = classes.filter(acpClass=> acpClass.role == role)
                             <h2><span className="text-teal-500 font-bold">Teacher:</span> {classDetail.name}</h2>
                             <p><span className="text-teal-500 font-bold">TK:</span> {classDetail.price}</p> 
                         </div>
-                        <button className="border-teal-500 px-5 py-2 border-2 cursor-pointer">Payment</button>
+                        <Link to='/payment'><button className="border-teal-500 px-5 py-2 border-2 cursor-pointer">Payment</button></Link>
                     </div>
                 </div>
                 )
