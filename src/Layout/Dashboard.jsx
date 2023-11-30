@@ -7,9 +7,10 @@ import img from '../assets/classes-icon-17.png'
 import { MdEmail, MdClass } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
+import useTeacher from "../hooks/useTeacher";
 const Dashboard = () => {
-    //todo: get isAdmin value from the database
     const [isAdmin] = useAdmin();
+    const [isTeacher] = useTeacher();
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-teal-500">
@@ -31,6 +32,16 @@ const Dashboard = () => {
                             : <>
 
                             </>
+                    }
+
+                    {
+                        isTeacher ? <>
+                        <li><NavLink to='/dashboard/addClass'>Add Class</NavLink></li>
+                        <li><NavLink to='/dashboard'>My Class</NavLink></li>
+                        </>
+                        :
+                        <>
+                        </>
                     }
                     <div className="divider"></div>
                     <li><NavLink to='/'><FaHome></FaHome> Home</NavLink></li>

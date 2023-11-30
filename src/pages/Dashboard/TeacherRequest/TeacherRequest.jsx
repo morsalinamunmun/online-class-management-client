@@ -97,6 +97,7 @@ export default function TeacherRequest() {
         <TableHead>
           <TableRow>
             <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell>Email</StyledTableCell>
             <StyledTableCell align="right">Experience</StyledTableCell>
             <StyledTableCell align="right">Category</StyledTableCell>
             <StyledTableCell align="right">Title</StyledTableCell>

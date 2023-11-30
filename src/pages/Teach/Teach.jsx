@@ -11,14 +11,15 @@ const Teach = () => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
+        const email = form.email.value;
         const title = form.title.value;
         const userImg = form.userImg.value;
         const category = form.category.value;
         const experience = form.experience.value;
-        const applicationInfo = { name, title, category, experience, userImg}
+        const applicationInfo = { name, title, category, experience, email, userImg}
 
         //send form data to server
-        fetch('http://localhost:5000/application ', {
+        fetch('http://localhost:5000/teacherRequest', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
@@ -49,6 +50,12 @@ const Teach = () => {
                                 <span className="label-text">Name</span>
                             </label>
                             <input type="text" placeholder="Your Name" name="name" className="rounded-lg border-2 border-teal-500 input input-bordered w-full" required />
+                        </div>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="text" placeholder="Your Name" name="email" defaultValue={user?.email} className="rounded-lg border-2 border-teal-500 input input-bordered w-full" readOnly required />
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
@@ -92,7 +99,7 @@ const Teach = () => {
                             </label>
                         </div>
                     </div>
-                    <input type="submit" value="Application Send" className=" mt-10 btn btn-block bg-teal-500 text-white" />
+                    <input type="submit" value="Submit for Review" className=" mt-10 btn btn-block bg-teal-500 text-white" />
                 </form>
             </div>
         </div>
