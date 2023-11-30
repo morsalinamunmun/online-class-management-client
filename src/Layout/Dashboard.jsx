@@ -24,7 +24,7 @@ const Dashboard = () => {
                 <ul className="menu">
                     {
                         isAdmin ? <>
-                            <li><NavLink to='/'><FaHome></FaHome>Profile</NavLink></li>
+                            <li><NavLink to='/dashboard/myProfile'><FaHome></FaHome>Profile</NavLink></li>
                             <li><NavLink to='/dashboard/teacherRequest'>Teacher Request</NavLink></li>
                             <li><NavLink to='/dashboard/users'><FaUserFriends /> All User</NavLink></li>
                             <li><NavLink to='/dashboard/allClasses'><MdClass />All Classes</NavLink></li>
@@ -36,6 +36,7 @@ const Dashboard = () => {
 
                     {
                         isTeacher ? <>
+                        <li><NavLink to='/dashboard/profile'>Profile</NavLink></li>
                         <li><NavLink to='/dashboard/addClass'>Add Class</NavLink></li>
                         <li><NavLink to='/dashboard/myClass'>My Class</NavLink></li>
                         </>

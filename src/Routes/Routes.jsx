@@ -64,6 +64,10 @@ export const router = createBrowserRouter([
                 path:'allClasses',
                 element: <AllClasses></AllClasses>
             },
+            {
+                path: 'myProfile',
+                element: <MyProfile></MyProfile>
+            },
             
             //teacher
             {
